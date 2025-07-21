@@ -1,3 +1,26 @@
+# Video and image files
 Video.mp4
 output.gif
 debug_frame.jpg
+*.mp4
+*.gif
+*.jpg
+*.png
+
+# Calibration data
+*.npz
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.env/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
