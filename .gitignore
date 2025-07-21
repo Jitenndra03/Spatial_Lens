@@ -4,7 +4,6 @@ output.gif
 debug_frame.jpg
 *.mp4
 *.gif
-*.jpg
 *.png
 
 # Calibration data

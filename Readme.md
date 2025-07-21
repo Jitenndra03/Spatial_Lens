@@ -5,6 +5,7 @@ Spatial Lens is a computer vision project that enables accurate distance measure
 ## Project Overview
 
 This project consists of several key components:
+
 - Camera calibration using chessboard patterns
 - Image augmentation to increase the training dataset
 - Real-time distance measurement between circular objects
@@ -25,6 +26,7 @@ This project consists of several key components:
 - PIL (Pillow)
 
 ## Project Structure
+
     Spatial_Lens/
     ├── Augmentated_images/ # (Optional) Image dataset
     ├── chessboard_images/ # Calibration images
@@ -56,7 +58,7 @@ This project consists of several key components:
 OpenCV estimates the intrinsic camera matrix \( K \) and distortion coefficients \( D \) using a grid of known square size.
 
 - Input: Multiple images of a 2D chessboard
-- Output: 
+- Output:
   - `camera_matrix` (focal lengths, optical center)
   - `dist_coeffs` (radial/tangential distortion)
 
@@ -68,8 +70,8 @@ Once computed, these are saved to `live_camera_calibration.npz`.
 
 On each webcam frame:
 
-- Convert to grayscale  
-- Apply Gaussian blur  
+- Convert to grayscale
+- Apply Gaussian blur
 - Detect circles using `cv2.HoughCircles()`:
 
 ```python
@@ -78,6 +80,7 @@ circles = cv2.HoughCircles(blurred, cv2.HOUGH_GRADIENT,
                            param1=50, param2=30,
                            minRadius=10, maxRadius=100)
 ```
+
 ---
 
 ### 3. Distance Estimation
@@ -95,24 +98,25 @@ Now, for two circle centers:
     distanceₚₓ = √[(x₂ - x₁)² + (y₂ - y₁)²] distanceₘₘ = distanceₚₓ / pixels_per_cm
 ```
 
-
 ✅ This gives real-world distance in centimeters.
 
 ---
 
 ## 🖼️ Sample Output
 
-![Distance Measurement Example](Circular Object Distance_screenshot_21.07.2025.png)
-*Screenshot showing two detected circles and the measured distance overlay*
+![Distance Measurement Example](images/Circular%20Object%20Distance_screenshot_21.07.2025.png)
+_Screenshot showing two detected circles and the measured distance overlay_
 
 ## 🎥 Live Demo
 
 <!-- 📹 PLACEHOLDER: EMBED OR LINK TO DEMO VIDEO HERE -->
-*Short video showing real-time detection and distance measurement.*
+
+_Short video showing real-time detection and distance measurement._
 
 ## 🚀 How to Run the Project
 
 ### Prerequisites
+
 - Python 3.x
 - Required libraries: `opencv-python`, `numpy`, `pillow`
 
@@ -120,37 +124,40 @@ You can install the required libraries using pip:
 
     pip install opencv-python numpy pillow
 
-
 ### Step 1: Prepare Calibration Images
+
 1. Print a standard chessboard pattern (9x6 inner corners recommended)
 2. Take 20-30 photos of the chessboard from different angles with your camera
 3. Place these images in the `chessboard_images` directory
 
 ### Step 2: Organize Images (Optional)
+
 Run the preprocessing script to rename your images for easier management:
-    
+
     python preprocessing.py
 
-
 ### Step 3: Augment Images (Optional)
+
 To increase your dataset size for better calibration:
-    
+
     python augementation.py
 
-
 ### Step 4: Camera Calibration
+
 Calibrate your camera using the chessboard images:
-    
+
     python CameraCallibiration.py
 
 This will generate the calibration file `live_camera_calibration.npz` containing your camera's parameters.
 
 ### Step 5: Run Distance Measurement
+
 Now you can measure distances between circular objects:
-    
+
     python Distance_measurement.py
 
 ### Usage Tips
+
 1. For accurate measurements, ensure good lighting conditions
 2. Use a circular object of known size (like a coin) as reference
 3. The first detected circle is used as the reference for scale
@@ -158,15 +165,17 @@ Now you can measure distances between circular objects:
 5. Press ESC to exit the application
 
 ### Troubleshooting
+
 - If circles aren't being detected, try adjusting the HoughCircles parameters in the code
 - For better performance, ensure your camera is properly focused on the objects
 - If measurements seem off, recalibrate your camera or check the reference object size
 
 ## 🧠 Future Ideas
+
 - Auto-detect multiple object pairs
 - Add 3D position estimation using solvePnP
 - Support for other shapes (e.g., squares or rectangles)
 
 ## 🤝 Contributions
-Contributions and improvements are welcome! Feel free to fork, enhance, or raise issues.
 
+Contributions and improvements are welcome! Feel free to fork, enhance, or raise issues.
